@@ -100,8 +100,9 @@ from sklearn.model_selection import BaseCrossValidator
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import roc_auc_score
-
-
+from pathlib import Path
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # ============================================================
 # Question 1
@@ -244,12 +245,11 @@ def get_estimator():
 # ============================================================
 # Script to test the objects implemented in this file.
 # ============================================================
-
+DATA_PATH = Path(__file__).parent / "data"
 if __name__ == "__main__":
     from sklearn.model_selection import cross_validate
-    DATAPATH="C:/Users/Lenovo/Downloads/datacamp-master-main/assignement/2026-assignment-sklearn/data/"
     train = pd.read_csv(
-        DATAPATH + "churn_train.csv", parse_dates=["registration_month"]
+        DATA_PATH / "churn_train.csv", parse_dates=["registration_month"]
     )
     # Pass the full DataFrame (including registration_month) to the splitter.
     X = train.drop(columns=["churn"])
@@ -275,8 +275,6 @@ if __name__ == "__main__":
     print(f"CV results : {scores.round(3)}")
     print(f"Mean CV AUC   : {scores['test_score'].mean():.3f}")
     #--exploring the data and the features--
-    import seaborn as sns
-    import matplotlib.pyplot as plt
     numerical_cols = X.select_dtypes(
         include=["number"]
     ).columns
@@ -304,7 +302,7 @@ if __name__ == "__main__":
         )
 #--Testing on churn_test.csv--
     test = pd.read_csv(
-    DATAPATH + "churn_test.csv",
+    DATA_PATH /"churn_test.csv",
     parse_dates=["registration_month"])
     X_test = test.drop(columns=["churn"])
     y_test = test["churn"]
