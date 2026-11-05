@@ -100,8 +100,7 @@ from sklearn.model_selection import BaseCrossValidator
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import roc_auc_score
-from pathlib import Path
-import matplotlib.pyplot as plt
+
 
 # ============================================================
 # Question 1
@@ -244,10 +243,12 @@ def get_estimator():
 # ============================================================
 # Script to test the objects implemented in this file.
 # ============================================================
-DATA_PATH = Path(__file__).parent / "data"
 if __name__ == "__main__":
+    from pathlib import Path
+    import matplotlib.pyplot as plt
     import seaborn as sns
     from sklearn.model_selection import cross_validate
+    DATA_PATH = Path(__file__).parent / "data"
     train = pd.read_csv(
         DATA_PATH / "churn_train.csv", parse_dates=["registration_month"]
     )
