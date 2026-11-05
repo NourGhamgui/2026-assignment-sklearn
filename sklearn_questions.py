@@ -101,7 +101,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import roc_auc_score
 from pathlib import Path
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 # ============================================================
@@ -247,6 +246,7 @@ def get_estimator():
 # ============================================================
 DATA_PATH = Path(__file__).parent / "data"
 if __name__ == "__main__":
+    import seaborn as sns
     from sklearn.model_selection import cross_validate
     train = pd.read_csv(
         DATA_PATH / "churn_train.csv", parse_dates=["registration_month"]
